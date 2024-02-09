@@ -1,0 +1,15 @@
+component:
+  one:
+    name: service-one
+    namespace: app-namespace-one
+    clientTarget: "http://{{ tpl .Values.component.two.name . }}.{{ tpl .Values.component.two.namespace . }}:8080/server-client"
+  two:
+    name: service-two
+    namespace: app-namespace-two
+    clientTarget: "http://{{ tpl .Values.component.three.name . }}.{{ tpl .Values.component.three.namespace . }}:8080/server-client"
+  three:
+    name: service-three
+    namespace: app-namespace-three
+    clientTarget: "http://{{ tpl .Values.component.one.name . }}.{{ tpl .Values.component.one.namespace . }}:8080/server"
+
+

@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.component.one.name }}
+  namespace: {{ .Values.component.one.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.component.one.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.component.one.name }}
+    spec:
+      imagePullSecrets:
+        - name: cn-system-image-pull-secret
+      containers:
+        - name: service
+          image: "codenow-codenow-data-plane.jfrog.io/client-server-sample:1.0.0"
+          imagePullPolicy: Always
+          env:
+            - name: client_target
+              value: {{ include "render-value" ( dict "value" .Values.component.one.clientTarget "context" .) }}
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 50m
+              memory: 60Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.component.two.name }}
+  namespace: {{ .Values.component.two.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.component.two.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.component.two.name }}
+    spec:
+      imagePullSecrets:
+        - name: cn-system-image-pull-secret
+      containers:
+        - name: service
+          image: "codenow-codenow-data-plane.jfrog.io/client-server-sample:1.0.0"
+          imagePullPolicy: Always
+          env:
+            - name: client_target
+              value: {{ include "render-value" ( dict "value" .Values.component.two.clientTarget "context" .) }}
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 50m
+              memory: 60Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.component.three.name }}
+  namespace: {{ .Values.component.three.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.component.three.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.component.three.name }}
+    spec:
+      imagePullSecrets:
+        - name: cn-system-image-pull-secret
+      containers:
+        - name: service
+          image: "codenow-codenow-data-plane.jfrog.io/client-server-sample:1.0.0"
+          imagePullPolicy: Always
+          env:
+            - name: client_target
+              value: {{ include "render-value" ( dict "value" .Values.component.three.clientTarget "context" .) }}
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 50m
+              memory: 60Mi

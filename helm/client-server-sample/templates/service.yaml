@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.component.one.name }}
+  namespace: {{ .Values.component.one.namespace }}
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+    name: http-{{ .Values.component.one.name }}
+  selector:
+    app: {{ .Values.component.one.name }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.component.two.name }}
+  namespace: {{ .Values.component.two.namespace }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      name: {{ .Values.component.two.name }}
+  selector:
+    app: {{ .Values.component.two.name }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.component.three.name }}
+  namespace: {{ .Values.component.three.namespace }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      name: {{ .Values.component.three.name }}
+  selector:
+    app: {{ .Values.component.three.name }}
