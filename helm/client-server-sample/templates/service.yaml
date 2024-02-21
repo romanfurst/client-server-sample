@@ -24,7 +24,7 @@ spec:
     - port: 8080
       targetPort: 8080
       protocol: TCP
-      name: {{ .Values.component.two.name }}
+      name: http-{{ .Values.component.two.name }}
   selector:
     app: {{ .Values.component.two.name }}
 ---
@@ -39,6 +39,6 @@ spec:
     - port: 8080
       targetPort: 8080
       protocol: TCP
-      name: {{ .Values.component.three.name }}
+      name: http-{{ .Values.component.three.name }}
   selector:
     app: {{ .Values.component.three.name }}
