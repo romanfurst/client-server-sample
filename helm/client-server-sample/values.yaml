@@ -16,7 +16,7 @@ component:
     clientTarget: "http://{{ tpl .Values.component.one.name . }}.{{ tpl .Values.component.one.namespace . }}:8080/server"
 
 image:
-  repository: codenow-codenow-data-plane.jfrog.io/client-server-sample
+  repository: romanfurst/client-server-sample
   pullPolicy: IfNotPresent
   tag: "1.0.0"
 
